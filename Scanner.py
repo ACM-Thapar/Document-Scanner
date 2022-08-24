@@ -55,6 +55,8 @@ for j,y in enumerate(myPicList):
     imgCrop = imgScan[r[0][1]:r[1][1], r[0][0]:r[1][0]]
     cv2.imshow(str(x),imgCrop)
 
+    print(f'{r[3]} :{pytesseract.image_to_string(imgCrop)}')
+    myData.append(pytesseract.image_to_string(imgCrop))
 
 
 
