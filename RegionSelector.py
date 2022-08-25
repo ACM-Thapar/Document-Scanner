@@ -2,15 +2,16 @@ import cv2
 import random
 
 scale = 0.5
-circles=[]
+circles = []
 counter = 0
 counter2 = 0
-point1=[]
-point2=[]
+point1 = []
+point2 = []
 myPoints = []
 myColor = []
+
 def mousePoints(event,x,y,flags,params):
-    global counter,point1,point2,counter2,circles,myColor
+    global counter,point1,point2,counter2,circles,myColor,myPoints,scale,counter
     if event == cv2.EVENT_LBUTTONDOWN:
         if counter==0:
             point1=int(x//scale),int(y//scale)
@@ -25,15 +26,19 @@ def mousePoints(event,x,y,flags,params):
         circles.append([x,y,myColor])
         counter2 +=1
 
-img = cv2.imread('Forms\\test1.jpg')
-img = cv2.resize(img,(0,0),None,scale,scale)
+def function(y):
+    print('TargetFile\\'+y)
+    img = cv2.imread('TargetFile\\' + y)
+    img = cv2.resize(img, (0, 0), None, scale, scale)
+    while True:
+        for x, y, color in circles:
+            cv2.circle(img, (x, y), 3, color, cv2.FILLED)
+        cv2.imshow("Original Image", img)
+        cv2.setMouseCallback("Original Image", mousePoints)
+        if cv2.waitKey(1) & 0xFF == ord('s'):
+            return myPoints
 
-while True:
-    for x,y,color in circles:
-        cv2.circle(img,(x,y),3,color,cv2.FILLED)
-    cv2.imshow("Original Image",img)
-    cv2.setMouseCallback("Original Image",mousePoints)
-    if cv2.waitKey(1) & 0xFF == ord('s'):
-        print(myPoints)
-        break
+
+
+
 
