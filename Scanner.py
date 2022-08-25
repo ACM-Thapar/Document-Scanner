@@ -2,13 +2,14 @@ import cv2
 import numpy as np
 import os
 import pytesseract
-import aspose.words as aw
 import docx
 import RegionSelector
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
-imgQ = cv2.imread('TargetFile\\test1.jpg')
+path = 'TargetFile'
+myPic = os.listdir(path)
+imgQ = cv2.imread('TargetFile\\'+myPic[0])
 
 #imgQ = cv2.resize(imgQ,(w//3,h//3))
 per = 25
@@ -19,10 +20,8 @@ orb = cv2.ORB_create(1000)
 kp1,des1 = orb.detectAndCompute(imgQ,None)
 #imgKp1 = cv2.drawKeypoints(imgQ,kp1,None)
 
-path = 'TargetFile'
-myPicList = os.listdir(path)
-print(myPicList)
-for j,y in enumerate(myPicList):
+print(myPic)
+for j,y in enumerate(myPic):
     img = cv2.imread(path + "/" + y)
     #cv2.imshow(y,img)
     kp2,des2 = orb.detectAndCompute(img,None)
