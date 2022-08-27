@@ -11,16 +11,12 @@ path = 'TargetFile'
 myPic = os.listdir(path)
 imgQ = cv2.imread('TargetFile\\'+myPic[0])
 
-#imgQ = cv2.resize(imgQ,(w//3,h//3))
 per = 25
-#roi = [[(30, 6), (584, 500), 'text', 'poem']]
-
 
 orb = cv2.ORB_create(1000)
 kp1,des1 = orb.detectAndCompute(imgQ,None)
-#imgKp1 = cv2.drawKeypoints(imgQ,kp1,None)
 
-print(myPic)
+
 for j,y in enumerate(myPic):
     img = cv2.imread(path + "/" + y)
     #cv2.imshow(y,img)
@@ -53,7 +49,6 @@ for j,y in enumerate(myPic):
     for x,r in enumerate(roi):
         cv2.rectangle(imgMask,(r[0][0],r[0][1]),(r[1][0],r[1][1]),(0,255,0),cv2.FILLED)
         imgShow = cv2.addWeighted(imgShow,0.99,imgMask,0.1,0)
-    cv2.imshow(y,imgShow)
 
     imgCrop = imgScan[r[0][1]:r[1][1], r[0][0]:r[1][0]]
     cv2.imshow(str(x),imgCrop)
