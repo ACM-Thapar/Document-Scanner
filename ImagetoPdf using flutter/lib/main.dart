@@ -14,6 +14,8 @@ main() {
   ));
 }
 
+
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -26,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ImagetoPdf converter",style:TextStyle(fontweight:FontWeight.bold,color:Colors.white)),
+        title: Text("ImagetoPdf converter",style:TextStyle(fontweight:FontWeight.bold, color:Colors.white)),
         actions: [
           IconButton(
               icon: Icon(Icons.picture_as_pdf),
